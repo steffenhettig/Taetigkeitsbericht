@@ -1,0 +1,992 @@
+\documentclass[
+	letterpaper, % Paper size, specify a4paper (A4) or letterpaper (US letter)
+	10pt, % Default font size, specify 10pt, 11pt or 12pt
+]{CSUniSchoolLabReport}
+
+\addbibresource{sample.bib} % Bibliography file (located in the same folder as the template)
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage{setspace}
+%\usepackage{xcolor}
+\usepackage[table]{xcolor}
+\usepackage{amsmath}
+\usepackage{circuitikz}
+\usepackage{listings}
+\usepackage{siunitx}
+%\usepackage[headsepline]{scrlayer-scrpage}
+\usepackage{hyperref}
+\usepackage{scrlayer-scrpage}
+\usepackage{icomma}
+\usepackage{pgfplots}
+\usepackage{graphicx}
+\usepackage[center]{caption}
+\usepackage{tabularx}
+\usepackage[euler]{textgreek}
+\usepackage{sourcecodepro}
+\usepackage{pdflscape}
+\usepackage{subcaption}
+
+
+
+\hypersetup{colorlinks=true, linkcolor=black, urlcolor=black, citecolor=black}
+\setkomafont{pagehead}{\normalfont \footnotesize}
+\setkomafont{pagefoot}{\normalfont \footnotesize}
+\pagestyle{scrheadings}
+\ohead{\headmark}
+\automark{section}
+\ihead{\includegraphics[height=15pt]{VEGA_Logo.png}}
+\ifoot{Steffen Hettig}
+\ofoot{\pagemark}
+\setlength{\footnotesep}{10pt}
+\setlength{\skip\footins}{10mm}     %space between footnote and text
+\pgfplotsset{compat=1.16}
+%\addbibresource{sample.bib} % Bibliography file (located in the same folder as the template)
+\definecolor{HSO_blue}{RGB}{23, 62, 94}
+\definecolor{VEGA_yellow}{RGB}{250, 225, 76}
+\definecolor{MyRed}{RGB}{216, 26, 96}
+\definecolor{MyGreen}{RGB}{0, 121, 106}
+\definecolor{MyYellow}{RGB}{255, 167, 39}
+
+% for references
+%\setlength{\bibitemsep}{1em}     % Abstand zwischen den Literaturangaben
+%\setlength{\bibhang}{2em}        % Einzug nach jeweils erster Zeile
+% Trennung von URLs im Literaturverzeichnis (große Werte [> 10000] verhindern die Trennung)
+%\defcounter{biburlnumpenalty}{10} % Strafe für Trennung in URL nach Zahl
+%\defcounter{biburlucpenalty}{500}  % Strafe für Trennung in URL nach Großbuchstaben
+%\defcounter{biburllcpenalty}{500}  % Strafe für Trennung in URL nach Kleinbuchstaben
+
+%------------------------------------------------------------------------------
+% Codestyle
+%------------------------------------------------------------------------------
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{RGB}{220,220,220}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{MyRed},
+    numberstyle=\footnotesize\color{codegray}\ttfamily,
+    stringstyle=\color{HSO_blue},
+    basicstyle=\ttfamily\small,
+    breakatwhitespace=true,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2,
+    frame=leftline
+}
+\lstset{style=mystyle}
+%----------------------------------------------------------------------------------------
+%	REPORT INFORMATION
+%----------------------------------------------------------------------------------------
+
+\title{Erster Erfahrungsbericht (EB1)}
+\date{}
+
+%\author{Gruppe 15: \\ Marc \textsc{Leopold} \\ Steffen \textsc{Hettig} \\ Pascal \textsc{Hohlfeld}} % Author name(s), add additional authors like: '\& James \textsc{Smith}'
+
+%----------------------------------------------------------------------------------------
+
+%------------------------------------------------------------------------------
+% "Titelblatt"
+%------------------------------------------------------------------------------
+% Literatur-Datenbank
+
+\begin{document}
+
+\thispagestyle{empty}
+\begin{spacing}{1.6}
+\begin{center}
+
+\begin{figure}[H]
+\begin{minipage}[t]{0.5\textwidth}
+    \includegraphics[width=0.95\textwidth]{VEGA_Logo_mit_weissem_Rand}
+\end{minipage}
+\begin{minipage}[t]{0.5\textwidth}
+    \includegraphics[width=0.95\textwidth]{HSO_Logo_mit_weissem_Rand}
+\end{minipage}
+
+\end{figure}
+\Huge \textbf{Tätigkeitsbericht}
+
+%\huge \textbf{Versuch 1\\}
+\Large
+im Rahmen des Betriebspraktikums im Bachelor-Studiengang Elektrotechnik + Informationstechnik
+
+
+%\textcolor{HSO_blue}{\textit{überarbeitete Version}}
+%\linebreak
+
+\Large 
+\begin{tabular}{l r}\\
+Name:& Steffen \textsc{Hettig}\\
+Matrikelnummer: & 189318 \\
+Studiengang: & EI-5\\
+\\
+Praktikantenamtsleiter: &  \qquad Prof. Dr.-Ing. Daniel \textsc{Fischer}\\
+Betreuer: &  \qquad Dipl.-Ing. Jörg \textsc{Börsig}\\
+\\
+Betrieb: & VEGA Grieshaber KG\\
+& Am Hohenstein 113\\
+& 77761 Schiltach\\
+\\
+Abgabedatum: & \textcolor{red}{XX.XX.XXXX}\\
+\end{tabular}
+\end{center}
+
+%----------------------------------------------------------------------------------------
+% Inhaltsverzeichnis
+%----------------------------------------------------------------------------------------
+\newpage
+%\thispagestyle{empty}
+\ihead{\includegraphics[height=15pt]{VEGA_Logo.png}}
+\ifoot{Steffen Hettig}
+\ofoot{ }
+\Large
+\textbf{Bestätigung des Betreuers}\\
+\linebreak
+\large
+Hiermit bestätige ich die Richtigkeit dieses Berichts.\\
+\linebreak
+\linebreak
+\linebreak
+Schiltach, 08.03.2024\\
+\linebreak
+\linebreak
+Jörg Börsig
+
+
+\newpage
+\large
+\setcounter{page}{1}
+\ofoot{\pagemark}
+\tableofcontents
+\renewcommand{\tablename}{Tab.}
+\renewcommand{\figurename}{Abb.}
+$ $
+\newpage 
+\section{Einleitung}
+Dieser Tätigkeitsbericht entstand im Rahmen des Praxissemesters bei VEGA
+Grieshaber KG. Im September 2020 startete dort das StudiumPLUS, weshalb das Unternehmen und dessen Organisationsstrukturen schon bekannt und vertraut waren. Da das Betriebspraktikum
+im berufsbegleitendes Studium integriert ist, kann auch kein exaktes
+Start- und Enddatum genannt werden.\\
+Alle Abbildungen und Darstellungen in dieser Dokumentation sind, soweit nicht anders
+gekennzeichnet, eigene Aufnahmen von Steffen Hettig oder wurden der Datenbank von
+VEGA entnommen.
+\subsection{VEGA Grieshaber KG}
+Die VEGA Grieshaber KG ist ein mittelständisches Unternehmen, welches 1959 gegründet
+wurde, mit Sitz in Schiltach und stellt Messgeräte zur Ermittlung von Füllstand, Grenzstand
+und Druck her. Diese kommen in verschiedenen Branchen der Prozessindustrie
+zum Einsatz. Weltweit beschäftigt das Unternehmen über 2100 (Stand: 2022) Mitarbeiter*
+innen, wovon mehr als 1000 am Hauptsitz in Schiltach arbeiten. VEGA ist Teil der
+Grieshaber Firmengruppe, zu der auch die Schwesterunternehmen Grieshaber Precision
+und Supfina gehören.
+Neben dem Hauptsitz in Schiltach betreibt VEGA auch weltweit weitere Niederlassungen
+und Produktionsstätten, um die Produktion und den Vertrieb in über 80 Ländern zu
+gewährleisten.
+
+\subsection{Die Entwicklungsabteilung}
+Das Praxissemester wurde in der Entwicklungsabteilung absolviert. Zu dieser gehören ca.
+130 Mitarbeiter*innen. Im Groben lässt sich die Abteilung in zwei Bereiche gliedern:
+Elektronikentwicklung und Konstruktion. Die Elektronikentwicklung lässt sich wiederum
+in Hard- und Softwareentwicklung unterteilen, wobei sich hier verschiedene Entwicklerteams,
+je nach entsprechendem Fachbereich und Messprinzip der zu entwickelnden Sensoren, zusammensetzen. Während des Praxissemesters lag die Tätigkeit im Bereich der Vorausentwicklung/ Forschung. Dieser Bereich der Entwicklung erforscht und entwickelt neue Technologien oder Innovationen.
+
+\newpage
+\section{Grundlagen}
+Im Folgenden soll auf die verwendeten Tools, unterteilt in Software und Hardware, eingegangen werden. Dabei sollen einige Bestandteile theoretisch erläutert werden.
+
+\subsection{Kommunikation}
+Während des Praxissemesters wurden die beiden Kommunikationsprotokolle I\textsuperscript{2}C\footnote{Inter-Integrated Circuit} und UART\footnote{Universal Asynchronous Receiver Transmitter} eingesetzt. Im Folgenden wird auf deren wichtigsten Eigenschaften eingegangen.
+\subsubsection{I\textsuperscript{2}C}
+Der I\textsuperscript{2}C-Bus wird verwendet, um eine Kommunikation zwischen einem Master- (oder mehreren Mastern) und einem oder mehreren Slave-Geräten herzustellen. Für das Bussystem werden lediglich die zwei Leitungen Serial Data Line (SDA) und Serial Clock Line (SCL) sowie zwei Pull-Up-Widerstände benötigt. In Abbildung \ref{fig:I2CBus} ist die Topologie exemplarisch dargestellt.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.99\textwidth]{I2CBeispiel}
+    \caption{Aufbau I\textsuperscript{2}C-Bus, \cite[1]{TI_I2C}}
+    \label{fig:I2CBus}
+\end{figure}
+Alle Teilnehmer (Master und Slave) sind über Open-Drain an den Bus angeschlossen. Somit können die Teilnehmer das Potential der Busleitungen auf Masse ziehen oder den Bus freigeben, wodurch das Potential über die Pull-Up-Widerstände auf die Versorgungsspannung hochgezogen wird.\\
+Überlicherweise wird der Bus von einem Master gesteuert, der mit den Slave-Geräten kommuniziert. Diese senden (im Normalfall) nur Daten, wenn sie zuvor vom Master angesprochen wurden. Damit nicht mehrere Slave-Devices gleichzeitig angesprochen werden und womöglich mehrere gleichzeitig senden, ist jedem Slave eine eindeutige Adresse zugeordnet.\\
+Eine I\textsuperscript{2}C-Kommunikation beginnt durch das Senden einer START-Bedingung (fallende Flanke bei SDA während HIGH-Signal bei SCL) und endet durch die STOP-Bedingung (steigende Flanke bei SDA während HIGH-Signal bei SCL). Beide Bedingungen werden vom Master aus gesendet. Dieser Vorgang ist nachfolgend (Abb. \ref{fig:Start-Stop-Bedingung}) dargestellt.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{StartStop}
+    \caption{Start- und Stop-Bedingung \cite[4]{TI_I2C}}
+    \label{fig:Start-Stop-Bedingung}
+\end{figure}
+
+Die Interaktion eines I\textsuperscript{2}C-Masters mit den Slave-Geräten erfolgt auf zwei Arten: Schreiben in ein Slave-Register oder Lesen aus einem Slave-Register. Im Folgenden ist der Aufbau eines Write-Vorgangs mit einer Datenlänge von einem Byte dargestellt (Abb. \ref{fig:I2C-Write}).\\
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.99\textwidth]{I2CWrite}
+    \caption{Aufbau I\textsuperscript{2}C-Write \cite[7]{TI_I2C}}
+    \label{fig:I2C-Write}
+\end{figure}
+Wie in der Abbildung kenntlich gemacht, wird der Bus an den grauen Stellen vom Master und an den weißen Stellen von einem Slave-Gerät gesteuert. So sendet der Master nach der Start-Bedingung die Slave-Adresse des Slaves, an den er schreiben möchte, inklusive ein $R/\overline{W} = 0$. Das Slave-Gerät mit der jeweiligen Adresse sollte sich angesprochen fühlen und antwortet mit einem ACK (acknowledge). Daraufhin sendet der Master die Slave-Register-Adresse, in die er schreiben möchte - dies wiederum bestätigt mit einem ACK vom Slave-Gerät. Im Anschluss werden die Daten gesendet. Dies ist in Abbildung \ref{fig:I2C-Write} mit einem Byte dargestellt - es können allerdings auch mehrere Bytes gesendet werden. Der Write-Vorgang wird mit einem ACK vom Slave-Gerät und zuletzt mit der Stop-Bedingung, gesendet vom Master, beendet.\\
+Ein Read-Vorgang, wie in Abbildung \ref{fig:I2C-Read} dargestellt, verhält sich ähnlich zu einem Read-Vorgang.\\
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.99\textwidth]{I2CRead}
+    \caption{Aufbau I\textsuperscript{2}C-Read \cite[7]{TI_I2C}}
+    \label{fig:I2C-Read}
+\end{figure}
+Der wesentliche Unterschied besteht darin, dass der Master, vor dem eigentlichen Read-Vorgang, einen Write-Vorgang ausführt, in dem jedoch nur die Slave-Adresse und die Slave-Register-Adresse übermittelt werden, aus dieser gelesen werden möchte. Im Anschluss erfolgt ein wiederholter Start und der Lese-Vorgang beginnt. Der wiederholte Start verhält sich ähnlich wie der gewöhnliche, jedoch mit dem Unterschied, dass dieser gesendet wird, ohne, dass zuvor eine Stop-Bedingung gesendet wurde.
+
+\subsubsection{UART}
+UART (Universal Asynchronous Receiver/ Transmitter) definiert ein Protokoll, um Daten zwischen zwei Geräten auszutauschen. Zwischen Sender und Empfänger befinden sich lediglich zwei Leitungen, um in beide Richtungen Senden und Empfangen zu können (siehe Abb. \ref{fig:UART}). 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{UART}
+    \caption{Aufbau UART \cite{UART}}
+    \label{fig:UART}
+\end{figure}
+Dabei ist die oben gezeigte, \glqq überkreuzende\grqq $ $ Verdrahtung zu beachten.\\
+UART arbeitet asynchron. Das bedeutet, dass sich Sender und Empfänger kein gemeinsames Taktsignal teilen, wodurch sich gewisse Anforderungen an Sender und Empfänger ergeben: Zum einen müssen beide Geräte mit derselben Geschwindigkeit (Baudrate) übertragen. Zum anderen muss eine einheitliche Rahmenstruktur vorliegen. 
+Dazu zählen die Anzahl der Stop-Bits, wie viele Datenbits übertragen werden (meist 7 oder 8) und welche Parität (gerade oder ungerade) verwendet wird. Ein beispielhafter UART-Rahmen ist nachfolgend (Abb. \ref{fig:UART_Rahmen}) abgebildet.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{UART_Rahmen}
+    \caption{Beispielhafter UART-Rahmen \cite{UART}}
+    \label{fig:UART_Rahmen}
+\end{figure}
+Im Beispiel ist ein Rahmen mit einem Stop-Bit, sieben Datenbits und einer geraden Parität (deshalb Pritätsbit=0) dargestellt.\\
+
+Hauptsächlich wird UART eingesetzt, um eine Kommunikation zwischen Gerät und PC herzustellen.
+
+\subsection{Hardware}
+Im folgenden Abschnitt soll auf die wichtigsten Hardware-Tools, welche im Praxissemester eingesetzt wurden, beschrieben werden.
+\subsubsection{msp430-Eval-Board}
+Dieses Entwicklungsboard - mit dem msp430FR5994 bestückt - wurde VEGA-intern von Jörg Börsig entwickelt. Vor wenigen Jahren wurde dieses Eval-Board noch als \glqq state of the art\grqq -Board in der Forschung und Entwicklung eingesetzt bis es schließlich von einer neuen Plattform (U575QIIC4 von ST) abgelöst wurde. Heute wird das msp430-Board (siehe Abb. \ref{fig:msp430}) eingesetzt, um Studenten eine Einführung in die hardware-nahe Programmierung und die damit verbundenen Bestandteile zu geben.\\
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\textwidth]{msp430Board}
+    \caption{msp430-Board}
+    \label{fig:msp430}
+\end{figure}
+Der msp430FR5994-Mikrocontroller ist Teil einer 16-Bit-Mikrocontroller-Familie und wurde von der Firma Texas Instruments entwickelt. Die msp430-Controller zeichnen sich besonders durch ihre sparsame Energieaufnahme und die damit verbundenen, verschiedenen Low-Power-Modi aus. Sie verwenden eine 16-Bit RISC Architektur, wodurch eine effiziente und schnelle Ausführung von Befehlen ermöglicht wird. Wie viele andere Mikrocontroller auch, bieten die der msp430-Familie eine Vielzahl von Peripheriegeräten an. Dazu zählen bspw. Analog-Digital-Wandler, verschiedene Timer oder auch verschiedene Kommunikationsschnittstellen wie UART oder I\textsuperscript{2}C.\\
+
+\subsubsection{U5-Board}
+Der STM32U575QIIC4 stellt das Herzstück dieses Eval-Boards dar. Der ARM Cortex-M4 Prozessor erreicht eine maximale von 250 MHz und bietet klassischerweise verschiedene Peripherie an, wie beispielsweise GPIO\footnote{general purpose input/output}, ADC\footnote{analog-to-digital converter} und DAC\footnote{digital-to-analog converter} sowie Schnittstellen zur Kommunikation (SPI, I\textsuperscript{2}C, UART). Wie bei den anderen STM32-Mikrocontrollern üblicherweise auch, wird der U5 mit der zugehörigen IDE\footnote{Integrated Development Environment} von ST, der \glqq STM32CubeIDE\grqq $ $ programmiert.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{U5Board}
+    \caption{U5-Board}
+    \label{fig:U5}
+\end{figure}
+Das aktuell bei VEGA eingesetzte Eval-Board wurde von Jörg Börsig entwickelt. Neben dem Mikrocontroller ist ein Temperatursensor, eine Echtzeituhr, ein Mikro-SD-Karten-Anschluss sowie einige Stecker, um weitere Peripherie anschließen zu können.
+
+\newpage
+\subsubsection{LPKF ProtoLaser S4}
+Ein Platinenlaser stellt im Bereich der Elektronikindustrie eine Möglichkeit zur Herstellung von Leiterplatten dar. In der Entwicklungsabteilung von VEGA kommt ein Platinenlaser meist dann zum Einsatz, wenn Prototypen einer Schaltung aufgebaut werden sollen. Dies spart Kosten und Zeit im Vergleich zur Herstellung bei einer externen Firma. Das Herstellen der Leiterplatten im Haus stellt eine einfache und unkomplizierte Möglichkeit dar. Prototypen können schnell auf ihre Funktion überprüft und eventuelle Fehler ermittelt werden, um eine nächste Revision zu starten.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{platinenlaser}
+    \caption{Platinenlaser LPKF Protolaser S4 \cite{laser}}
+    \label{fig:platinenlaser}
+\end{figure}
+Ein Arbeitsvorgang mit dem Protolaser S4 von LPKF wird begonnen, indem die Gerber-Files (Dateien, die mit einer CAD\footnote{computer-aided design}- bzw. CAE\footnote{computer-aided engineering}-Software erstellt wurden) in die zugehörige Software hochgeladen werden. Bei den meisten Projekten sind dies vier Dateien, die sowohl Ober- und Unterseite als auch die Bohrungen und Ränder der Platine enthalten.\\
+Die Software leitet den Benutzer nun durch die verschiedenen Anpassungsmöglichkeiten des Laservorgangs durch bis schließlich der Laserprozess gestartet werden kann.
+Nach Beendigung der Leiterplattenherstellung müssen noch Nieten in die Bohrungen von Hand gestanzt werden. Im Anschluss kann mit der Bauteilbestückung der Platine gestartet werden.
+
+
+\subsubsection{LPKF ProtoFlow S4}
+Bei bestimmten Anwendungen ist es nicht möglich, die Bauteile von Hand (bspw. mit einer Lötstation oder einem Heißluftföhn) zu löten. Gründe hierfür können bspw. die Größe der (SMD\footnote{Surface-mounted device}-)Bauteile oder deren Temperaturempfindlichkeit sein. Bei solchen Anwendungen kann ein Reflow-Ofen (siehe Abb. \ref{fig:Reflow-Ofen}) zum Einsatz kommen, der diese Anforderungen erfüllen kann.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{Reflow-Ofen}
+    \caption{Reflow-Ofen LPKF ProtoFlow S4 \cite{Ofen}}
+    \label{fig:Reflow-Ofen}
+\end{figure}
+In der Entwicklungsabteilung befindet sich der frei zugängliche Reflow-Ofen ProtoFlow S4 ((siehe Abb. \ref{fig:Reflow-Ofen})). In der zugehörigen Software können verschiedene Temperaturprofile ausgewählt werden - es können jedoch auch eigene erstellt werden. Über vier Thermoelemente erzeugt der Reflow-Ofen ein gleichmäßiges Erwärmen und kann auch zum Ende des Reflow-Prozesses wieder einen Abkühlungsvorgang einleiten. Der gesamte Prozess dauert im Regelfall ca. fünf Minuten.
+
+\newpage
+\subsubsection{Saleae Logic Analyzer und Logic 2}
+Mit einem \textsc{Saleae Logic Analyzer} und dessen zugehöriger Software kann sehr einfach verschiedenste Kommunikation zwischen zwei Geräten überprüft werden. Dazu muss lediglich je eine Leitung vom \textsc{Logic Analyzer} an die jeweilige Kommunikationsleitung angeschlossen werden (Bsp. I\textsuperscript{2}C: SDA und SCL). 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{LogicPro16}
+    \caption{Saleae Logic Pro 16 \cite{saleae}}
+    \label{fig:LogicPro16}
+\end{figure}
+Der \textsc{Logic Pro 16} (siehe Abb. \ref{fig:LogicPro16}) besitzt eine maximale Sample Rate von 500 MS/s im Digitalen und 50 MS/s im Analogen und kann verschiedenste Kommunikationsprotokolle analysieren. I\textsuperscript{2}C, UART, CAN oder auch SPI\footnote{Serial Peripheral Interface} sind wenige Beispiele des großen Funktionsumfangs.\\
+In der Open-Source-Software \textsc{Logic 2} von \textsc{Saleae} werden die einzelnen Kanäle mit ihrem Signalnamen im zeitlichen Verlauf dargestellt (siehe Abb. \ref{fig:Logic2}).
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.99\textwidth]{protocol-decoders}
+    \caption{Logic 2 von Saleae \cite{Logic2}}
+    \label{fig:Logic2}
+\end{figure}
+Wie in Abbildung \ref{fig:Logic2} zu sehen, werden nicht nur die Signalverläufe angezeigt, sondern auch was hinter den einzelnen Bits steckt (bspw. I\textsuperscript{2}C Read-/Write-Operationen). Damit kann bei der Überprüfung der Kommunikation sehr viel Zeit gespart werden, besonders im Vergleich zu herkömmlichen Methoden, wie dem Überprüfen mit dem Oszilloskop.
+Die Überprüfung beginnt zunächst mit dem Start einer Aufnahme. Diese kann nach einer gewünschten Zeit pausiert und sich im Nachgang die einzelnen Verläufe angesehen werden. Zusätzlich besteht die Möglichkeit, die Dateien in einer csv\footnote{comma-seperated-values format}-Datei zu speichern. Sollten Ereignisse nur sehr selten auftreten, kann in solchen Fällen die Trigger-Funktion verwendet werden. Dabei muss lediglich die Zeitspanne bestimmt werden, wie lange nach dem Trigger-Ereignis (bspw. fallende Flanke) aufgezeichnet werden soll.
+
+
+\subsection{Software}
+Im letzten Abschnitt wurde die verwendete Hardware beschrieben. Nun soll auf die verwendeten Software-Tools eingegangen werden.
+\subsubsection{\textsc{KiCad}}
+KiCad EDA ist eine Open-Source-Software und wird insbesondere zum Erstellen von Leiterplattenlayouts verwendet. Es stellt eine Alternative zu anderen CAE-Softwares, wie bspw. \textsc{EAGLE} oder \textsc{Target 3001!}, dar. Ein großer Vorteil von KiCad besteht darin, dass diese Software von einer großen Community stetig weiterentwickelt wird und so immer wieder neue Funktionalitäten implementiert werden.\\
+Der Arbeitsablauf zur Erstellung eines Leiterplattenlayouts folgt dabei in den meisten Fällen dem gleichen Schema: Zunächst wird ein Schaltplan im Schaltplan-Editor erstellt. Anschließend werden allen Bauteilen des ein passendes Footprint zugewiesen. So wird in diesem Schritt beispielsweise erst die Bauweise von Widerständen oder Kondensatoren (bspw. SMD: 0603, 0805, etc.) den jeweiligen Bauteilen zugewiesen.
+Im folgenden Schritt kann mit dem Layout der Platine begonnen werden. Um eine Platine zu erstellen, die mit dem sich im Haus befindenden Laser herstellen lässt, können Leiterbahnen nur auf Top- oder Bottom-Seite gezogen werden. Nun können alle Verbindungen hergestellt werden. Oftmals wird für ein Signal die Fläche um die Bauteile verwendet, um sich ein Signalrouting zu sparen. Dabei fällt die Wahl meist auf GND (\glqq Massefläche\grqq). Anschließend können die Gerber-Dateien erzeugt und die Platine am Laser (oder extern) hergestellt werden.\\
+Außerdem bietet KiCad EDA die Möglichkeit an, sich die erstellte Leiterplatte als 3D-Modell anzeigen zu lassen, sowie verschiedenste Plugins installieren zu können, was wiederum auf die große Community zurückzuführen ist.
+
+\subsubsection{Code Composer Studio}
+Das \textsc{Code Composer Studio} ist eine von \textsc{Texas Instruments} (TI) entwickelte IDE, mit der Anwendungen für die Controller von TI entwickelt werden können. Die integrierte Entwicklungsumgebung besitzt einige Code-Entwicklerwerkzeuge, die von anderen IDEs auch bekannt sind, wie beispielsweise einen Code-Editor, einen Compiler, einen Linker oder auch einen Debugger.\\
+Eine Besonderheit, abseits der integrierten Entwicklungsumgebung, ist, dass \textsc{Texas Instruments} verschiedenste Codebeispiele zu ihren Controllern kostenfrei bereitstellt. So werden beispielsweise einfache Projekte zur Verfügung gestellt, welche die I\textsuperscript{2}C- oder die UART-Peripherie verwenden.
+
+\subsubsection{STM32CubeIDE}
+Die \textsc{STM32CubeIDE} ist eine IDE, die von der Firma \textsc{ST} entwickelt wurde. Prinzipiell unterstützt sie, ebenso wie das \textsc{Code Composer Studio}, die herkömmlichen Entwicklertools. Eine Funktionalität, die diese IDE von gewöhnlichen unterscheidet, besteht darin, über eine GUI\footnote{Graphical User Interface}, die Peripherie des Controllers zu- oder abzuschalten. Der Code wird dann von der Entwicklungsumgebung automatisch generiert.
+
+\subsubsection{\textsc{HTerm}}
+Das Terminalprogramm \textsc{Tterm} dient hauptsächlich der seriellen Kommunikation zwischen Rechner und elektronischen Geräten über RS232, USB oder TCP/IP-Schnittstellen. Die Oberfläche der Open-Source-Software ist sehr einfach gehalten. Sobald die wenigen, nötigen Einstellmöglichkeiten getätigt sind, kann die Kommunikation beginnen. Zu diesen Einstellungen zählen beispielsweise Baudrate, Anzahl an Datenbits, Parität oder auch Anzahl an Stopbits. \textsc{HTerm} bietet die Möglichkeit, die empfangenen Daten dezimal oder hexadezimal aber auch als ASCII-Zeichen darzustellen.
+
+\subsubsection{\textsc{Spyder}}
+Die Open-Source-Software \textsc{Spyder} ist eine IDE für \textsc{Python}, welche sich besonders für wissenschaftliches Computing, Datenanalyse und maschinelles Lernen eignet.\\
+Ähnlich wie \textsc{Matlab} wird \textsc{Python} in diesem Zusammenhang für numerische Berechnungen, Visualisierungen und die Entwicklung von Algorithmen verwendet. \textsc{Spyder} bietet neben gewöhnlichen Editor-Features (wie bspw. von Visual Studio Code bekannt) weitere Eigenschaften an, wodurch die Signalverarbeitung mit \textsc{Python} als eine echte Alternative zu \textsc{Matlab} anzusehen ist - wenn nicht sogar mehr Vorteile hat: Ähnlich wie \textsc{Matlab} besitzt \textsc{Spyder} einen Variablen-Explorer sowie eine Konsole, die es Benutzern ermöglicht, \textsc{Python}-Code in Echtzeit auszuführen und Ergebnisse sofort zu sehen. Außerdem ist \textsc{Spyder} eng integriert mit beliebten \textsc{Python}-Bibliotheken für wissenschaftliches Computing wie NumPy oder Matplotlib. Ebenso wie \textsc{Matlab} bietet \textsc{Spyder} einen Debugger an, um den Code Schritt für Schritt durchlaufen zu können und eventuelle Fehler zu beheben.\\
+Eine der beliebtesten Eigenschaften von \textsc{Python} ist die Objektorientierung. Funktionen können so wesentlich schneller und intuitiver als in \textsc{Matlab} gefunden werden.
+
+\newpage
+\section{Einarbeitungsprojekt: Kraftsensor}
+\textbf{Ausgangssituation/ Motivation}\\
+Möchte man an einem VEGA-Sensor direkt am Gerät Einstellungen vornehmen oder ihn
+anderweitig kalibrieren, so geschieht dies über die \textsc{Plicscom}-Einheit – eine
+Bedienschnittstelle, welche oben auf dem Sensor angebracht ist. Auf dieser befindet sich ein
+Display und vier Taster, mit denen durch das Menü navigiert werden kann.
+Zur Bedienung stehen zwei Möglichkeiten zur Verfügung: Entweder wird der Gehäusedeckel heruntergeschraubt und das
+\textsc{Plicscom} kann per Tastendruck bedient werden oder es wird mit einem Magnetstift bedient (siehe Abb. \ref{fig:PLICSCOM}).
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{PLICSCOM.png}
+    \caption{Die beiden Bedienmöglichkeiten des \textsc{PLICSCOM}}
+    \label{fig:PLICSCOM}
+\end{figure}
+Eine Studentin, die in diesem Semester ihre Bachelorarbeit bei VEGA absolviert, beschäftigt sich in ihrer Thesis mit der Entwicklung eines Bedienkonzepts, sodass der Gehäusedeckel nicht abgenommen werden muss. Dabei sollen vier Kraftsensoren zum Einsatz kommen, die direkt
+unter dem Gehäusedeckel um jeweils 90° versetzt sitzen und damit einen Druck auf die
+Oberfläche des Gehäusedeckels detektieren können.\\
+
+Die gleiche Hardware soll zur Einarbeitung auch in diesem Projekt eingesetzt werden. Das Projekt ist zur besseren Übersicht im folgenden Blockschaltbild (Abb. \ref{fig:Projektstrukturplan}) visualisiert.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.99\textwidth]{Struktur}
+    \caption{Projektstrukturplan/ Blockschaltbild des Einarbeitungsprojekts \glqq Kraftsensor\grqq}
+    \label{fig:Projektstrukturplan}
+\end{figure}
+In diesem Projekt soll es darum gehen, eine Platine zu entwickeln, sodass ein
+msp430-Mikrocontroller mit den vier Sensoren über I\textsuperscript{2}C kommunizieren kann. Die erhaltenen
+Sensorwerte sollen über eine UART-Schnittstelle an einen PC gesendet werden, sodass diese
+dort weiterverarbeitet werden können. Die Software muss daher sowohl zum Sensor-Print als
+auch zum Rechner eine zuverlässige Kommunikation gewährleisten. Zusätzlich werden die empfangenen Daten mit einem \textsc{Python}-Skript eingelesen und in einem Plot-Fenster visualisiert.\\
+
+\textbf{Zielsetzung\\}
+Ziel des Projekts soll es die Sensordaten abzufragen und diese an einen Rechner zu übermitteln, um erste Erfahrungen in diesem Bereich zu sammeln.\\
+\newpage
+\subsection{Eingesetzter Kraftsensor} \label{subsec:Eingesetzter Kraftsensor}
+Da der Typ und dessen Datenblatt der vier baugleichen Kraftsensoren unter NDA stehen, wird statt dem Namen des Sensors der Name \glqq Kraftsensor\grqq $ $ verwendet. Somit wird an jeder Stelle,
+an der das Wort \glqq Kraftsensor\grqq $ $ (oder Abwandlungen des Wortes) verwendet wird, exakt dieser Sensortyp gemeint.\\
+\textbf{\\Schaltplan\\}
+Laut Datenblatt muss der Kraftsensor wie in Abbildung \ref{fig:BeschaltungSensor} beschalten werden.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{Sensorbeschaltung}
+    \caption{Beschaltung Kraftsensor (nachgestellt)}
+    \label{fig:BeschaltungSensor}
+\end{figure}
+Für die Stromversorgung (Pins VDD (5) und GND (6)) kann die des Eval-Boards verwendet werden. Zwischen VDD und GND müssen zwei Kondensatoren parallel zueinander geschalten werden. Der größere Kondensator stabilisiert die Eingangsspannung und der kleinere schließt Spannungsspitzen kurz, um die EMV\footnote{Elektromagnetische Verträglichkeit}-Eigenschaften des IC\footnote{Integrated Circuit} zu verbessern.\\
+
+Die beiden Pins SDA (4) und SCL (3) werden zum Anschluss an den I\textsuperscript{2}C-Bus verwendet.\\
+
+Mit Pin THR\_ADR (1) kann die I\textsuperscript{2}C-Slave-Adresse des jeweiligen Kraftsensors eingestellt werden. Zur besseren Übersicht sind die Möglichkeiten der Adressierung im folgenden tabellarisch dargestellt (Tab.\ref{tab:Adressen}).
+\begin{table}[H]
+    \begin{spacing}{1.2}
+    \centering
+    \large
+    \begin{tabular}{l c}\\
+        %\hline
+        \textbf{Verschaltung von Pin THR\_ADR (1)} & \textbf{Slave-Adresse}\\
+        \hline
+        über 3,3 k\textOmega $ $ - 50 k\textOmega $ $ Widerstand nach GND \qquad \qquad & 0x4C\\
+        über 3,3 k\textOmega $ $ - 50 k\textOmega $ $ Widerstand nach VDD & 0x4D\\
+        nach GND & 0x4E\\
+        nach VDD & 0x4F\\
+        %\hline
+    \end{tabular}
+    \caption{Adressierung der Kraftsensoren}
+    \label{tab:Adressen}        
+    \end{spacing}
+\end{table}
+
+Der Kraftsensor besitzt zusätzlich den Pin INTB (2). Dies ist ein Interrupt Output Pin, mit welchem die Möglichkeit besteht, einen externen Interrupt an den Mikrocontroller zu senden.\\
+
+\textbf{Register-Map\\}
+Um in einem späteren Teil die Sensorwerte über I\textsuperscript{2}C auslesen zu können, muss sich ein Überblick über die Register-Map verschaffen werden. Abbildung \ref{fig:registermap} zeigt einen Ausschnitt der Register-Map.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.99\textwidth]{registermap.png}
+    \caption{Ausschnitt Register-Map Kraftsensor}
+    \label{fig:registermap}
+\end{figure}
+
+In diesem Ausschnitt ist das Register abgebildet, welches den von der Kraft abhängigen Wert speichert. Die vier Sensoren werden jeweils in einem ULP\footnote{Ultra Low Power}-Mode betrieben, womit dieses Register eine Größe von 12 Bit besitzt. Alternativ ist dieses Register 16 Bit groß, wenn die Sensoren im High-Performance-Mode betrieben werden.\\
+
+\subsection{Verwendete Materialien und Hilfsmittel}
+\textbf{Hardware\\}
+Der Mikrocontroller ist auf einem hausintern entwickelten Eval-Board\footnote{Evaluation Board} bestückt. Dieses sowie eine Programmierschnittstelle stehen am Arbeitsplatz zur Verfügung.\\
+
+Um die I\textsuperscript{2}C-Kommunikation zwischen \textmu C\footnote{Mikrocontroller} und den Kraftsensoren zu überprüfen, soll ein \textsc{Saleae Logic Analyzer} eingesetzt werden. Dabei müssen lediglich zwei Leitungen des Analyzers an die SDA\footnote{Serial Data Line}- und SCL\footnote{Serial Clock Line}-Leitung des I\textsuperscript{2}C-Bus angeschlossen werden. In der zugehörigen Software können nun die Pegel angeschaut werden und sogar die gesendeten Werte direkt abgelesen werden. Darauf soll nochmal in einem späteren Teil dieses Berichts eingegangen werden. Um die UART-Kommunikation zwischen Mikrocontroller und PC herzustellen wird ein TTL\footnote{Transistor-Transistor-Logik} to USB Serial Converter verwendet.\\
+
+Hilfsmittel zur Inbetriebname der Sensorplatine wie Netzteil, Multimeter aber auch zur Nachbesserung wie eine Lötstation mit verschiedenen Lötspitzen und einem Mikroskop stehen am Arbeitsplatz dauerhaft zur Verfügung.\\
+Für die Herstellung der Platine soll ein Platinenlaser zum Einsatz kommen - für die Bestückung ein Reflow-Ofen. Beides befindet sich in der Abteilung.\\
+
+\textbf{Software\\}
+Bis auf wenige Ausnahmen ist die Software, die in diesem Projekt verwendet wird, Open Source, wodurch deren Verfügbarkeit keine Hürde darstellt. Der Schaltplan und das Platinenlayout wird mit \textsc{KiCad 7.0.9} erstellt. Wie eingangs erwähnt soll der Mikrocontroller mit der Entwicklungsumgebung \textsc{Code Composer Studio} von \textsc{Texas Instruments} programmiert werden. Um den Einstieg in das Programmieren zu erleichtern und um viel Zeit zu sparen, sollen Code-Beispiele von \textsc{TI} verwendet und auf diesen Auftrag entsprechend angepasst werden. Diese werden von \textsc{Texas Instruments} kostenlos zur Verfügung gestellt. Um die Sensordaten, die per UART an den PC geschickt werden sollen, zu überprüfen, kommt zunächst das Terminalprogramm \textsc{Hterm} zum Einsatz. Später sollen die Daten über ein \textsc{Python}-Skript mit der Open-Source-Software \textsc{Spyder} eingelesen und in einem Plot veranschaulicht werden. Die Software für den \textsc{Saleae Logic Analyzer} ist ebenfalls Open Source, kann jedoch nur mit entsprechender Hardware verwendet werden.\\
+
+\subsection{Projektdurchführung}
+Die Durchführung des Projekts lässt sich, wie auch im Blockschaltbild (siehe Abb. \ref{fig:Projektstrukturplan}) in die Bereiche Sensorplatine, Programmierung des \textmu C und \textsc{Python}-Skript untergliedern.\\
+
+\subsubsection{Sensorplatine}
+\textbf{Schaltplan\\}
+Die vier Sensoren wurden, wie im Abschnitt \hyperref[subsec:Eingesetzter Kraftsensor]{\glqq Eingesetzter Kraftsensor\grqq} beschrieben, verschaltet. Alle Signale können über die Pins an einem Stecker des Boards abgegriffen werden. Auf der gesamten Platine wurde für die Widerstände und Kondensatoren die Bauform 0805 (SMD) gewählt. Der gesamte Schaltplan befindet sich im Anhang im Abschnitt \ref{subsec:Schaltplan_Kraftsensor}.\\
+
+\textbf{Layout\\}
+Beim Platinenlayout gab es wenig zu beachten, was bei einer anderen Platine dieses Umfangs nicht auch wichtig wäre. Die vier Sensoren wurden jedoch aus optischen Gründen auf einem Kreis mit jeweils 90° Versatz platziert, um der Aufgabenstellung bzw. der Idee zur Problemstellung nachzukommen. Auf der Platinenrückseite befinden sich jeweils auf Höhe der Kraftsensoren die beiden Kondensatoren. Hierbei ist wichtig darauf zu achten, diese möglichst nahe beim IC und sie so zu platzieren, dass der Strom über das die Pads der Kondensatoren fließt, da sie sonst keinen Effekt haben.\\
+Das gesamte Platinenlayout befindet sich im Anhang im Abschnitt \ref{subsec:Layout_Kraftsensor}.\\
+
+\textbf{Platine herstellen und bestücken\\}
+Die Platine wurde mit einem Platinenlaser im Haus hergestellt. Für die Herstellung können die Gerberdaten in der Software für den Laser hochgeladen werden. Nach der schnellen Parametrierung und einer Aufwärmphase des Lasers, kann die Top-Seite gelasert werden. Ist diese fertig, wird der Benutzende aufgefordert, das Leiterplattenmaterial zu drehen, um die Bottom-Seite zu lasern. An den Stellen der Durchkontaktierungen werden Löcher in das Material gelasert. Die Durchkontaktierungen werden mithilfe von einer Stanze im Nachgang von Hand gemacht.\\
+
+Für die Bauteilbestückung wurde zunächst großflächig eine dünne Schicht Flussmittel aufgetragen. Im Anschluss wurde mit einem Dispenser Lötpaste auf die Pads aufgetragen und schließlich die Bauteile auf die Platine gesetzt.\\
+
+Anschließend kam die Platine in den Reflow-Ofen. Dieser erwärmt die Lötpaste, wodurch sich die Kontakte der Bauteile über die Paste mit dem Pad verbinden.
+
+Der gleiche Prozess wurde im Anschluss für die Bottom-Seite der Platine durchgeführt. Die weiteren Schritte (Durchgangsprüfung, Inbetriebnahme, etc.) \: sind \: im \: Abschnitt \glqq Auftragskontrolle\grqq $ $ dokumentiert.\\
+
+Im Folgenden (Abb. \ref{fig:Sensorplatine}) ist ein Bild von Top- und Bottom-Seite der Platine zu sehen.\\
+\begin{figure}[H]
+\begin{minipage}[t]{0.5\textwidth}
+    \centering
+    \includegraphics[width=0.65\textwidth]{PlatineTop}
+    \subcaption{Top-Seite}
+\end{minipage}
+\begin{minipage}[t]{0.5\textwidth}
+    \centering
+    \includegraphics[width=0.64\textwidth]{PlatineBot}
+    \subcaption{Bottom-Seite}
+\end{minipage}
+    \caption{Bestückte Sensorplatine aus dem Projekt \glqq Kraftsensor\grqq}
+    \label{fig:Sensorplatine}
+\end{figure}
+
+
+\newpage
+\subsubsection{Programmierung des Mikrocontrollers/ Softwarearchitaktur}
+Für die Programmierung des Mikrocontrollers wurde die folgende Architektur (Abb. \ref{fig:Softwarearchitektur}) erstellt. Diese formte sich aus den Anforderungen an den Auftrag, aber auch durch die gegebenen Code-Beispiele für I\textsuperscript{2}C und UART. Im Folgenden soll auf die einzelnen Komponenten mit Code-Auszügen eingegangen werden.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{Softwarearchitektur}
+    \caption{Softwarearchitektur zur I\textsuperscript{2}C- und UART-Kommunikation}
+    \label{fig:Softwarearchitektur}
+\end{figure}
+
+
+\textbf{\\while(1)}
+\renewcommand{\lstlistingname}{listing}
+\begin{lstlisting}[caption={Auszug aus while(1) - Projekt \glqq Kraftsensor\grqq},label={lst:while1},language=C]
+while (1)
+{
+    if (s32Counter == 100)
+    {
+        I2C_Master_ReadReg(SLAVE_ADDR1, 0x03, 2U);
+    }
+    if (s32Counter == 200)
+    {
+        I2C_Master_ReadReg(SLAVE_ADDR2, 0x03, 2U);
+    }
+    if (s32Counter == 300)
+    {
+        I2C_Master_ReadReg(SLAVE_ADDR3, 0x03, 2U);
+    }
+    if (s32Counter == 400)
+    {
+        I2C_Master_ReadReg(SLAVE_ADDR4, 0x03, 2U);
+    }
+
+    if (s32Counter == 400)
+    {
+        s32Counter = 0;
+    }
+    // ... more code ...
+    s32Counter++;
+}
+\end{lstlisting}
+In der main-Funktion wird die while(1) zyklisch aufgerufen (Polling). Mit der I\textsuperscript{2}C-Read-Register-Funktion werden zunächst die Übergabeparameter einem Zustandsautomaten übergeben. Der Zustandsautomat läuft im Hintergrund und wurde im Beispiel von \textsc{Texas Instruments} implementiert. Die Read-Funktion wird viermal aufgerufen, um von jedem Sensor die Werte zu erhalten. Zwischen den Aufrufen muss kurz gewartet werden (realisiert durch \textit{s32Counter}), da die physische Übertragung der Daten über SDA und SCL eine gewisse Zeit andauert und damit der I\textsuperscript{2}C-Interrupt dazwischen auslösen kann.\\
+
+\textbf{I\textsuperscript{2}C Interrupt}\\
+In der I\textsuperscript{2}C-ISR besteht nun die Möglichkeit über eine switch-case Read, Write und weitere Operationen durchzuführen. In diesem Projekt wird jedoch nur die Read-Funktionaltät verwendet. 
+\begin{lstlisting}[caption={Auszug aus I\textsuperscript{2}C-ISR - Projekt \glqq Kraftsensor\grqq},label={lst:I2C_ISR},language=C]
+// ...
+case USCI_I2C_UCRXIFG0:                 // Vector 22: RXIFG0
+    rx_val = UCB0RXBUF;
+    if (RXByteCtr)
+    {
+        switch (UCB0I2CSA)
+        {
+        case SLAVE_ADDR1:
+            ReceiveBuffer_Slave1[ReceiveIndex1++] = rx_val;
+        case SLAVE_ADDR2:
+            ReceiveBuffer_Slave2[ReceiveIndex2++] = rx_val;
+        case SLAVE_ADDR3:
+            ReceiveBuffer_Slave3[ReceiveIndex3++] = rx_val;
+        case SLAVE_ADDR4:
+            ReceiveBuffer_Slave4[ReceiveIndex4++] = rx_val;
+        default:
+            break;
+        }
+        // ...
+    }
+\end{lstlisting}
+Durch Aufrufen der I\textsuperscript{2}C-ISR wird ein Lesevorgang ausgelöst. Wie in listing \ref{lst:while1} zu sehen, werden jeweils zwei Bytes an der Adresse (im Slave) gelesen. Diese werden (siehe listing \ref{lst:I2C_ISR}) daraufhin in die globalen Arrays \textit{ReceiveBuffer\textunderscore Slave[...]} zwischengespeichert (zu verstehen als Pufferspeicher). Sobald also \textit{s32Counter} bis 400 inkrementiert wurde, sind alle vier Lesevorgänge aus den Slaves beendet und die \textit{ReceiveBuffer\textunderscore Slave[...]} beschrieben.\\
+
+Beide Interrupts - I\textsuperscript{2}C und UART - sind an interne Timer gekoppelt und sind daher als klassische Timer-Interrupts zu verstehen.\\
+
+\textbf{UART Interrupt}\\
+Vom Rechner wird über ein \textsc{Python}-Skript das ASCII-Zeichen 'g' gesendet. Sobald dieses vom \textmu C empfangen wurde, wird in der UART-ISR (siehe listing \ref{lst:UART_ISR}) ein Flag gesetzt, sodass in der main-Funktion ein UART-Sendevorgang (siehe listing \ref{lst:while1_UART}) ausgelöst wird.
+\begin{lstlisting}[caption={Auszug aus UART-ISR - Projekt \glqq Kraftsensor\grqq},label={lst:UART_ISR},language=C]
+// ...
+case USCI_UART_UCRXIFG:
+    if (UCA2RXBUF == 'g')
+    {
+        u8UARTReadFlag = 1U;
+    }
+// ...
+\end{lstlisting}
+Auch hier können über switch-case die verschiedenen UART-Funktionalitäten verwendet werden. 
+
+\begin{lstlisting}[caption={Auszug aus while(1) - Projekt \glqq Kraftsensor\grqq},label={lst:while1_UART},language=C]
+if (u8UARTReadFlag)
+{
+    u8UARTReadFlag = 0;
+
+    u8UartSend(ReceiveBuffer_Slave1, 2U);
+    u8UartSend(ReceiveBuffer_Slave2, 2U);
+    u8UartSend(ReceiveBuffer_Slave3, 2U);
+    u8UartSend(ReceiveBuffer_Slave4, 2U);
+}
+\end{lstlisting}
+Die vom Mikrocontroller über UART gesendeten Sensordaten werden nun vom PC wieder vom \textsc{Python}-Skript eingelesen und in einem Plot-Fenster dargestellt.
+
+\newpage
+\subsubsection{\textsc{Python}-Skript}
+\textbf{Initialisierung\\}
+In einem initialen Schritt werden zunächst die für das Skript nötigen Variablen und Objekte deklariert.
+\begin{lstlisting}[caption={Initialisierung aller Variablen und Objekte im \textsc{Python}-Skript aus dem Projekt Kraftsensor},label={lst:python_anfang},language=python]
+ADC_SIZE = 12                            
+ser = serial.Serial("COM6", 115200)      
+ser.open()
+
+dataList_U1 = []
+dataList_U2 = []
+dataList_U3 = []
+dataList_U4 = []
+
+fig = plt.figure()                                     
+ax = fig.add_subplot(1,1,1) 
+\end{lstlisting}
+Dazu muss ein serieller Port geöffnet werden, um über diesen die UART-Daten empfangen zu können. Im Anschluss wird für jeden der vier Sensoren eine Liste (Array) angelegt, in welchem jeweils die empfangenen Werte abgespeichert werden können. Im Anschluss wird eine Instanz für das Plot-Fenster angelegt.\\
+
+
+\textbf{Aufrufen der Funktion \textit{formatData} und labeln der Achsen\\}
+Im Abschnitt \glqq Programmierung des Mikrocontrollers/ Softwarearchitaktur\grqq $ $ unter dem Bereich \glqq UART Interrupt\grqq $ $ wurde bereits erwähnt, dass der Mikrocontroller dann Daten über UART versendet, sobald das Ascii-Zeichen 'g' empfangen wurde. Dieses wird in Zeile 1 (listing \ref{lst:python_animate}) gesendet, um die \glqq Konversation\grqq $ $ zu starten.
+\begin{lstlisting}[caption={Aufrufen der Funktion \textit{formatData} und labeln der Achsen im \textsc{Python}-Skript aus dem Projekt Kraftsensor},label={lst:python_animate},language=python]
+ser.write(b'g')
+y_U1, dataList_U1 = formatData(ser.read(2), dataList_U1)
+y_U2, dataList_U2 = formatData(ser.read(2), dataList_U2)
+y_U3, dataList_U3 = formatData(ser.read(2), dataList_U3)
+y_U4, dataList_U4 = formatData(ser.read(2), dataList_U4)
+     
+ax.clear()
+ax.plot(dataList_U1, label = "U1")
+ax.plot(dataList_U2, label = "U2")
+ax.plot(dataList_U3, label = "U3")
+ax.plot(dataList_U4, label = "U4")
+\end{lstlisting}
+Wie in Listing \ref{lst:python_animate} zu sehen ist, werden anschließend für die vier Sensoren jeweils die Funktion \textit{formatData} aufgerufen. Dieser werden zum einen zwei seriell eingelesene Byte und zum anderen die jeweilige Liste der Sensorwerte übergeben.
+Nachfolgend wird in Zeile 8 bis 11 (listing \ref{lst:python_animate}) eine Legende für den Plot erstellt.\\
+
+\textbf{Funktion \textit{formatData}\\}
+Im Folgenden soll auf die Funktion \textit{formatData} eingegangen werden.
+\begin{lstlisting}[caption={Funktion \textit{formatData} im \textsc{Python}-Skript aus dem Projekt Kraftsensor},label={lst:python_formatData},language=python]
+def formatData(y, dataList):
+    y = int.from_bytes(y, byteorder='big')
+    y = y >> 4
+    if(y & (1 << (ADC_SIZE - 1))) != 0:
+        y = y - (1 << (ADC_SIZE))
+
+    dataList.append(y)
+    dataList = dataList[-50:]
+    return y, dataList
+\end{lstlisting}
+Bereits bei Listing \ref{lst:python_animate} wurde angesprochen, dass die Funktion \textit{formatData} beim Aufruf für den Übergabeparameter y die seriell eingelesenen zwei Byte erhält. Zusätzlich wird die jeweilige Liste übergeben. In Zeile 2 (listing \ref{lst:python_formatData}) wird dann die Variable y (bis dahin Datentyp Byte) in einen Integer umgewandelt. Im Anschluss wird y um vier Stellen (Bits) nach rechts geshiftet, da die unteren vier Bit dieses Registers für andere Zwecke verwendet werden (siehe Abschnitt \ref{subsec:Eingesetzter Kraftsensor}). Im Anschluss wird das MSB auf eine 1 geprüft. Ist dies der Fall, wird der Wert (1 << ADC\_SIZE) subtrahiert. Grund dafür ist, dass die Sensordaten im Zweierkomplement dargestellt werden.
+Abschließend wird in Zeile 7 (listing \ref{lst:python_formatData}) der Sensorwert in die Liste mitaufgenommen. In der Folgezeile wir die Datenliste auf 50 Elemente limitiert. Wenn beispielsweise schon 50 Elemente in der Liste gespeichert sind, wird dennoch das neuste aufgenommen und der älteste Wert wird verworfen.
+
+\newpage
+\subsection{Projektkontrolle}
+Das gesamte Projekt konnte zeitlich gesehen nicht eindeutig in diese groben Schritte \glqq Projektdurchführung\grqq $ $ und \glqq Projektkontrolle\grqq $ $ eingeteilt werden. Es wurden beim Programmieren immer wieder Zwischentests gemacht und daraufhin Anpassungen vorgenommen - sozusagen um mit \glqq trial and error\grqq $ $ an das Ziel zu gelangen.
+\subsubsection{Funktion testen}
+\textbf{Sensorplatine\\}
+Nachdem die Sensorplatine hergestellt und bestückt wurde, wurden alle Signale in einem ersten Schritt auf eine ordnungsgemäße Verbindung mithilfe eines Durchgangsprüfers kontrolliert. In einem zweiten Schritt wurde überprüft, ob nicht fälschlicherweise eine Verbindung besteht, wo keine sein sollte (\glqq Negativ-Tests\grqq). Als alle Tests bestanden waren, konnte der Mikrocontroller programmiert werden.\\
+
+\textbf{I\textsuperscript{2}C Kommunikation\\}
+Die wohl größte Hürde des Projekts stellte die I\textsuperscript{2}C-Kommunikation dar. Dafür musste es zuerst einige Fehlversuche geben, bis die Kommunikation ordnungsgemäß funktionierte. Dabei war der \textsc{Saleae Logic Analyzer} ein wichtiges Tool für die Überprüfung der Kommunikation. Im Folgenden ist ein Auszug zu sehen, wie ein vollständiger Kommunikationszyklus (je einmal mit allen vier Sensoren kommuniziert) dargestellt wird (Abb. \ref{fig:Saleae}).
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.99\textwidth]{Saleae}
+    \caption{I\textsuperscript{2}C-Kommunikation mit \textsc{Saleae} dargestellt}
+    \label{fig:Saleae}
+\end{figure}
+Im hier gezeigten Beispiel wird vom Slave mit der Adresse 0x4C von der Adresse 0x03 zwei Bytes gelesen. In diesen steht 0xFF und 0xD2. Diese zwei Bytes können nun über UART an den Rechner gesendet werden.\\
+
+\textbf{UART Kommunikation\\}
+Um zu prüfen, ob tatsächlich die beiden Bytes beim PC ankommen, die über I\textsuperscript{2}C gesendet wurden, wurde zunächst das Terminalprogramm \textsc{Hterm} verwendet. Alternativ hätte auch hier wieder die Kommunikation mit dem \textsc{Saleae} überprüft werden können. Sobald diese Funktionalität gegeben war, wurde das Projekt umgebaut, sodass es mit einem \textsc{Python}-Skript funktioniert. Die gewünschte Funktionalität ist im Abschnitt \glqq Programmierung des Mikrocontrollers/ Softwarearchitaktur\grqq $ $ beschrieben. Im \textsc{Python}-Skript wird ein Real-Time-Plot erstellt, der die letzten 50 Daten je Kraftsensor darstellt. Im Folgenden (Abb. \ref{fig:Plot}) ist ein beispielhafter Plot dargestellt.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{Plot}
+    \caption{Exemplarischer \textsc{Python}-Plot}
+    \label{fig:Plot}
+\end{figure}
+Ca. ab Sample 10 wurde ein leichter Druck mit dem Finger auf U1 ausgeübt. Dies ist im Plot deutlich zu erkennen. Ebenfalls ist zu sehen, dass sich auch Ausschläge bei den anderen Kraftsensoren ergeben haben, obwohl keine Kraft auf diese ausgeübt wurde. Dieser Grund kann nun untersucht werden, soll jedoch nicht mehr Gegenstand dieses Projekts sein.
+
+
+\newpage
+\section{Projekt Infrarotsensor}
+\textbf{Ausgangssituation/ Motivation\\}
+Im Sommer 2023 stellte die Firma ST einen neuen Infrarot-Sensor STHS34PF80 vor. Dieser soll laut des Herstellers seine zentralen Anwendungen in Sicherheitsalarmen und intelligenten Beleuchtungen finden. Seine Hauptdisziplin soll in der Erkennung von Anwesenheit und Bewegung von Objekten liegen. So kam innerhalb der Forschungsabteilung die Idee auf, diesen Infrarot-Sensor möglicherweise in VEGA-Sensoren einzubauen und damit die Präsenz des Bedieners zu erkennen. Mit solch einer Präsenzerkennung könnte beispielsweise erst bei Anwesenheit das Display angeschaltet werden, um Energie zu sparen.\\
+
+\textbf{Evalutionstools\\}
+Um einen ersten Überblick über die Funktionsweise des Infrarot-Sensors zu bekommen, stellt ST Evalutionstools zur Verfügung (siehe Abb. \ref{fig:EvalTools}). 
+
+\begin{figure}[H]
+    \begin{center}
+    \begin{minipage}[t]{0.32\textwidth}
+        \centering
+        \includegraphics[width=0.8\textwidth]{EvalKit}
+        \subcaption{Eval Kit STEVAL-MKI231KA \cite{EvalKit}}
+        \label{fig:EvalTools_EvalKit}
+    \end{minipage}
+    \begin{minipage}[t]{0.32\textwidth}
+        \centering
+        \includegraphics[width=0.8\textwidth]{ExpansionBoard}
+        \subcaption{Expansion Board X-NUCLEO-IKS4A1 \cite{ExpansionBoard}}
+        \label{fig:EvalTools_ExpansionBoard}
+    \end{minipage}
+    \begin{minipage}[t]{0.32\textwidth}
+        \centering
+        \includegraphics[width=0.6\textwidth]{MotherBoard}
+        \subcaption{Mother Board NUCLEO-U575ZI-Q \cite{MotherBoard}}
+        \label{fig:EvalTools_MotherBoard}
+    \end{minipage}
+        \caption{Evalutionstools für den Infrarot-Sensor STHS34PF80}
+        \label{fig:EvalTools}
+    \end{center}
+\end{figure}
+
+In Abbildung \ref{fig:EvalTools_EvalKit} ist der Infrarot-Sensor zu sehen. Dieses Eval Kit kann nun über das Expansion Board (Abb. \ref{fig:EvalTools_ExpansionBoard}) mit dem Mother Board (Abb. \ref{fig:EvalTools_MotherBoard}) verbunden werden.\\
+Zusätzlich stellt ST eine GUI zur Verfügung, in der auch die Sensorwerte in einem Plot-Fenster visualisiert werden (siehe Abb. \ref{fig:Unicleo}).\\
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{unicleoGUI.png}
+    \caption{Unicleo-GUI zur Visualisierung der Sensorwerte}
+    \label{fig:Unicleo}
+\end{figure}
+
+In der GUI sind alle drei Graphen gegenüber der Zeit dargestellt. Im oberen Teil wird die Temperatur und im mittleren die Änderungsrate (Ableitung) der Temperatur geplottet. Beide Werte sind dezimal (in LSB) dargestellt. Im unteren Plot sind zwei Graphen abgebildet. In \textcolor{red}{rot} wird die Bewegungserkennung und in \textcolor{green}{grün} die Präsenzerkennung geplottet. Beide Größen werden als Flags dargestellt, können also die Zustände \glqq 0\grqq $ $ oder \glqq 1\grqq $ $ bzw. \glqq nicht erkannt\grqq $ $ oder \glqq erkannt\grqq $ $ einnehmen.\\
+
+\textbf{Zielsetzung\\}
+Ziel des Projekts soll es die Sensordaten abzufragen und diese mit einem \textsc{Python}-Skript einzulesen. Das \textsc{Python}-Skript soll dann die empfangenen Daten im Stil der Unicleo-GUI in Abbildung \ref{fig:Unicleo} in einem Fenster plotten.\\
+
+Für diese Zielsetzung wurde vom Prinzip die gleiche Struktur wie im Einarbeitungsprojekt gewählt.
+Diese ist zur besseren Übersicht im folgenden Blockschaltbild (Abb. \ref{fig:ProjektstrukturplanInfrator}) visualisiert.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.99\textwidth]{Struktur_Infrarot}
+    \caption{Projektstrukturplan/ Blockschaltbild des Projekts \glqq Infrarot-Sensor\grqq}
+    \label{fig:ProjektstrukturplanInfrator}
+\end{figure}
+In diesem Projekt soll es darum gehen, eine Platine zu entwickeln, sodass ein
+STM32U5-Mikrocontroller mit dem Sensor über I\textsuperscript{2}C kommunizieren kann. Die erhaltenen
+Sensorwerte sollen über eine UART-Schnittstelle an einen PC gesendet werden, sodass diese
+dort weiterverarbeitet werden können. Die Software muss daher sowohl zum Sensor-Print als
+auch zum Rechner eine zuverlässige Kommunikation gewährleisten. Zusätzlich werden die empfangenen Daten mit einem \textsc{Python}-Skript eingelesen und in einem Plot-Fenster visualisiert.\\
+
+\subsection{Eingesetzter Infrarotsensor}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\textwidth]{Infrarotsensor.png}
+    \caption{Infrarotsensor STHS34PF80 \cite[1]{STHS34PF80}}
+    \label{fig:Infrarot-Sensor}
+\end{figure}
+Der STHS34PF80 (siehe Abb. \ref{fig:Infrarot-Sensor}) ist ein ungekühlter, werkseitig kalibrierter Infrarot-Bewegungs- und Anwesenheitserkennungssensor mit einer Betriebswellenlänge zwischen 5 µm und 20 µm und einem Sichtfeld von 80°.
+
+Der STHS34PF80-Sensor wurde entwickelt, um die Menge an IR-Strahlung zu messen, die von einem Objekt innerhalb seines Sichtfeldes ausgesendet wird. Die Informationen werden vom ASIC digital verarbeitet, der so programmiert werden kann, dass er Bewegung, Anwesenheit oder eine Übertemperatur überwacht.
+
+Dank seiner außergewöhnlichen Empfindlichkeit kann der STHS34PF80 die Anwesenheit eines Menschen in einer Entfernung von bis zu 4 Metern erkennen, ohne dass eine optische Linse erforderlich ist. \cite{STHS34PF80}\\
+
+\textbf{Schaltplan}\\
+Da der Infrarot-Sensor über I\textsuperscript{2}C angesteuert wird, ergibt sich das folgende Schaltbild (Abb. \ref{fig:Schaltbild_Infrarotsensor}).
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{Schaltbild_Infrarotsensor}
+    \caption{Beschaltung des Infrarot-Sensors STHS34PF80 im I\textsuperscript{2}C-Modus \cite[17]{STHS34PF80}}
+    \label{fig:Schaltbild_Infrarotsensor}
+\end{figure}
+
+Einige Pinbezeichnungen sind gleich wie beim Kraftsensor und damit schon aus dem Einarbeitungsprojekt bekannt. Für eine genauere Erläuterung dieser Pins bzw. deren Funktionen soll daher auf den Abschnitt \ref{subsec:Eingesetzter Kraftsensor} verwiesen werden. Bisher nicht thematisiert wurde der \glqq CS\footnote{Chip select} \grqq-Pin. Dieser Pin wird nur verwendet, wenn der Sensor über SPI kommunizieren soll. Da der STHS34PF80 in diesem Projekt jedoch im I\textsuperscript{2}C-Modus betrieben wird, muss dieser Pin mit VDD verbunden werden.\\
+
+\newpage
+\textbf{Registermap}\\
+Im Folgenden wird auf die wichtigsten beiden Register eingegangen.\\
+$ $\\
+\textbf{FUNC\_STATUS}\\
+FUNC\_STATUS umfasst die drei Flags PRES\_FLAG (Presence Flag), MOT\_FLAG (Motion Flag) und TAMB\_SHOCK\_FLAG (Ambient temperature shock Flag) \cite[27]{STHS34PF80}. In diesem Projekt sollen jedoch zunächst nur das Presence- und Motion-Flag ausgelesen werden.\\
+
+\begin{center}
+    \begin{tabular}{| p{0.5cm} | p{0.5cm}| p{0.5cm}| p{0.5cm}| p{0.5cm} | p{0.15\textwidth}| p{0.15\textwidth}| p{0.18\textwidth}| p{0.1\textwidth}|}
+    \hline
+     7 &      6 &      5 &      4 &      3 &      2 &      1 &      0 &      Addr  \\
+    \hline
+    \hline
+    \multicolumn{5}{|c|}{-} & PRES\_FLAG & MOT\_FLAG & TAMB\_SHOCK\_ & 0x25  \\
+    \multicolumn{5}{|c|}{} &  &  & FLAG &   \\
+    \hline
+    \end{tabular}
+    \begin{table}[H]
+    \caption{Auszug aus der Registermap des STHS34PF80 (Register: FUNC\_STATUS)}       
+    \end{table}
+\end{center}
+
+
+\textbf{T\textsubscript{ambient}}\\
+T\textsubscript{ambient} umfasst einen 16-Bit-Wert, der die Umgebungstemperatur repräsentiert. Der Wert wird im Zweierkomplement dargestellt und besitzt eine Empfindlichkeit von 100 LSB/°C. \cite[28]{STHS34PF80}\\
+
+\begin{center}
+    \begin{tabular}{| p{0.05\textwidth} | p{0.05\textwidth}| p{0.05\textwidth}| p{0.05\textwidth}| p{0.05\textwidth} | p{0.05\textwidth}| p{0.05\textwidth}| p{0.05\textwidth}| p{0.1\textwidth} | p{0.2\textwidth} |}
+    \hline
+    \centering 7 &     \centering 6 &     \centering 5 &     \centering 4 &     \centering 3 &     \centering 2 &     \centering 1 &     \centering 0 &     \centering Addr. & \\
+    \hline
+    \hline
+    \multicolumn{8}{|c|}{TAMBIENT[7:0]} & 0x28 & TAMBIENT\_L\\
+    \hline
+    \multicolumn{8}{|c|}{TAMBIENT[15:8]} & 0x29 & TAMBIENT\_H\\
+    \hline
+    \end{tabular}
+    \begin{table}[H]
+    \caption{Auszug aus der Registermap des STHS34PF80 (Register: T\textsubscript{ambient})}       
+    \end{table}
+\end{center}
+
+\newpage
+\subsection{Projektdurchführung}
+Der Ablauf des Projekts geschah im wesentlichen analog zu dem des Einarbeitungsprojekts \glqq Kraftsensor\grqq. Aus diesem Grund soll in diesem Abschnitt nur auf die wesentlichen Bestandteile dieses Projekts eingegangen werden. Für weitere Ausführungen sei auf die analogen Abschnitte des Einarbeitungsprojekts verwiesen.\\
+
+\subsubsection{Sensorplatine}
+Die Erstellung des Schaltplans und Platinenlayouts stellte nur einen geringen Zeitumfang dar. Um den Sensor ansteuern zu können, werden zusätzlich ein Koppelkondensator, zwei Pull-Up-Widerstände und eine Buchse, um die Signale auf den Mikrocontroller zu führen. Der Schaltplan und das Platinenlayout sind im Anhang unter den Abschnitten \ref{subsec:Schaltplan_Infrarotsensor} und \ref{subsec:Layout_Infrarotsensor} zu finden. Die Top- und Bottom-Seite der Platine sind nachfolgend abgebildet.\\
+\begin{figure}[H]
+    \begin{minipage}[t]{0.5\textwidth}
+        \centering
+        \includegraphics[width=0.65\textwidth]{PlatineTop_infra}
+        \subcaption{Top-Seite}
+    \end{minipage}
+    \begin{minipage}[t]{0.5\textwidth}
+        \centering
+        \includegraphics[width=0.64\textwidth]{PlatineBot_infra}
+        \subcaption{Bottom-Seite}
+    \end{minipage}
+        \caption{Bestückte Sensorplatine aus dem Projekt \glqq Infrarot-Sensor\grqq}
+        \label{fig:Sensorplatine}
+\end{figure}
+
+
+\subsubsection{Programmierung des Mikrocontrollers/ Softwarearchitaktur}
+Für die Programmierung des Mikrocontrollers wurde die folgende Architektur (Abb. \ref{fig:Softwarearchitektur}) erstellt. Im Folgenden soll auf die einzelnen Komponenten mit Code-Auszügen eingegangen werden.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{Softwarearchitektur_Infrarotsensor}
+    \caption{Softwarearchitektur - Projekt \glqq Infrarot-Sensor\grqq}
+    \label{fig:Softwarearchitektur_infrarot}
+\end{figure}
+
+\textbf{while(1)}
+\begin{lstlisting}[caption={Auszug 1 aus while(1)} - Projekt \glqq Infrarot-Sensor\grqq,label={lst:while1},language=C]
+HAL_I2C_Mem_Read(&hi2c1, STHS34PF80_ADDR, REG_TAMBIENT_ADDR, 1U, RX_Buffer_TAMBIENT, 2U, 1000);
+HAL_Delay(1);
+
+HAL_I2C_Mem_Read(&hi2c1, STHS34PF80_ADDR, REG_FUNC_STATUS_ADDR, 1U, RX_Buffer_FUNC_STATUS, 1U, 1000);
+HAL_Delay(1);
+\end{lstlisting}
+In der while(1)-Schleife werden zyklisch die beiden Register TAMBIENT (TAMBIENT\_L und TAMBIENT\_H) und FUNC\_STATUS über I\textsuperscript{2}C ausgelesen. Diese werden dann in globalen Buffern (siehe Abb. \ref{fig:Softwarearchitektur_infrarot}) gespeichert.\\
+
+\begin{lstlisting}[caption={Auszug 2 aus while(1)} - Projekt \glqq Infrarot-Sensor\grqq,label={lst:while1},language=C]
+HAL_UART_Receive (&huart3, RX_Buffer, 1, 100);
+HAL_Delay(1);
+
+if(RX_Buffer[0] == 'g')
+{
+    HAL_UART_Transmit(&huart3, RX_Buffer_TAMBIENT, 2U, 100);
+    HAL_UART_Transmit(&huart3, RX_Buffer_FUNC_STATUS, 1U, 100);
+}
+RX_Buffer[0] = 0;
+\end{lstlisting}
+Außerdem wird in der while(1) ständig ein Byte über UART eingelesen. Wurde das Ascii-Zeichen 'g' empfangen, werden die Sensorwerte (gespeichert in den globalen Buffern) an einen PC per UART gesendet.\\
+
+\subsubsection{\textsc{Python}-Skript}
+Die Erläuterungen der Initialisierungsschritte sollen hier übersprungen werden. Diese geschehen analog zum Einarbeitungsprojekt \glqq Kraftsensor\grqq.\\
+
+\textbf{TAMBIENT}
+\begin{lstlisting}[caption={Einlesen von TAMBIENT über UART und Aufrufen der Funktion \textit{formatData} im \textsc{Python}-Skript - Projekt \glqq Infrarot-Sensor\grqq},label={lst:while1},language=python]
+ser.write(b'g')
+     
+y_TAMB = ser.read(2)
+y_TAMB = int.from_bytes(y_TAMB, byteorder='little')
+if(y_TAMB & (1 << (ADC_SIZE - 1))) != 0:
+    y_TAMB = y_TAMB - (1 << (ADC_SIZE))
+        
+y_TAMB_degree = y_TAMB / 100
+dataList_TAMBIENT = formatData(y_TAMB_degree, dataList_TAMBIENT)
+\end{lstlisting}
+In einem ersten Schritt wird das Ascii-Zeichen 'g' gesendet, um die \glqq Konversation\grqq $ $ zu starten. Im Anschluss werden zwei Byte über UART empfangen, in den Datentyp Integer umgewandelt und unter Berücksichtigung des Zweierkomplements gegebenenfalls umgerechnet. ADC\_SIZE wurde initial der Wert 16 zugewiesen, da T\_AMB eine Größe von 16 Bit besitzt. Abschließend wird y\_TAMB in Grad Celsius (°C) umgerechnet und dieser Wert sowie dessen Datenliste an die Funktion \textit{formatData} übergeben.
+
+\begin{lstlisting}[caption={Funktion \textit{formatData} aus dem \textsc{Python}-Skript - Projekt \glqq Infrarot-Sensor\grqq},label={lst:while1},language=python]
+def formatData(y, dataList):
+    dataList.append(y)
+    dataList = dataList[-100:]
+    return dataList
+\end{lstlisting}
+Die Funktion \textit{formatData} fügt y zur Liste hinzu und beschränkt die Listengröße auf 100 Elemente.\\
+
+\textbf{FUNC\_STATUS}
+\begin{lstlisting}[caption={Einlesen von FUNC\_STATUS über UART und Aufrufen der Funktionen \textit{formatData} und \textit{EditFlagData} im \textsc{Python}-Skript - Projekt \glqq Infrarot-Sensor\grqq},label={lst:func_status},language=python]
+buffer_presence_motion = ser.read(1)
+buffer_presence_motion = (int.from_bytes(buffer_presence_motion, byteorder='big'))
+y_TPRESENCE = EditFlagData(buffer_presence_motion, 2)
+y_TMOTION = EditFlagData(buffer_presence_motion, 1)
+    
+dataList_TPRESENCE = formatData(y_TPRESENCE, dataList_TPRESENCE)
+dataList_TMOTION = formatData(y_TMOTION, dataList_TMOTION)
+\end{lstlisting}
+Im Anschluss wird für das FUNC\_STATUS-Register ein Byte über UART eingelesen und in einen Integer umgewandelt. Diese Variable wird jeweils an die Funktion \textit{EditFlagData} übergeben und y\_TPRESENCE und y\_TMOTION zugewiesen.
+
+\begin{lstlisting}[caption={Funktion \textit{EditFlagData} aus dem \textsc{Python}-Skript - Projekt \glqq Infrarot-Sensor\grqq},label={lst:while1},language=python]
+def EditFlagData(y, shift):
+    y = y >> shift
+    y = y & 0x01
+    return y
+\end{lstlisting}
+Durch \textit{EditFlagData} bzw. auch mit dem Code aus Listing \ref{func_status} sind nun beide Flags auf zwei Variablen ausgelagert.\\
+Außerdem kommt noch Code hinzu, um die Achsen im Plot zu skalieren und zu beschriften. Dies geschieht jedoch analog zum Einarbeitungsprojekt \glqq Kraftsensor\grqq.\\
+
+\subsection{Projektkontrolle}
+Selbstverständlich wurden auch in diesem Projekt immer wieder Zwischentests gemacht, weswegen eine eindeutige, zeitliche Einteilung in die Phasen \glqq Durchführung\grqq und \glqq Kontrolle\grqq nicht möglich ist.\\
+Das Ergebnis des Projekts stellt der folgende \textsc{Python}-Plot (Abb. \ref{fig:python_plot}) dar.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{python_plot}
+    \caption{\textsc{Python}-Plot - Projekt \glqq Infrarot-Sensor\grqq}
+    \label{fig:python_plot}
+\end{figure}
+Zu Beginn der Aufzeichnung wurde sich in die Nähe des Sensors begeben, wodurch das Presence-Flag und das Motion-Flag auf 1 gesprungen sind. Anschließend wurde ein Finger auf den Sensor gelegt, wodurch ein Anstieg der Ambient-Temperature zu sehen ist. Danach wurde der Finger wieder heruntergenommen. Dabei lässt sich erkennen, dass die Temperatur wieder abkühlt und auch keine Präsenz mehr erkannt wird. Eine Bewegung wird noch eine gewisse Zeit danach erkannt. Dieses Flag arbeitet noch etwas träge und sollte noch angepasst werden.\\
+
+\subsubsection{Fazit}
+Die Ansteuerung des Sensors und eine visuelle Ausgabe im Stil der Unicleo-GUI hat zuverlässig funktioniert. An diesem Punkt wurden zum einen ein Kunststoffverpackung (dünnes Plastik) und zum anderen ein VEGA-Kunststoff-Gehäusedeckel über den Sensor gelegt. Dann musste allerdings festgestellt werden, dass der Sensor nur noch wenig bis gar nichts mehr messen konnte, da die Infrarot-Wellen nicht durch das Material dringen können. Somit lag schnell das Fazit vor, dass der Einbau dieses Infrarot-Sensors in ein VEGA-Gehäuse nicht realisierbar ist.
+\\test commit
+
+\newpage
+\listoffigures
+
+\newpage
+\listoftables
+
+\newpage
+\lstlistoflistings
+
+\newpage
+\begin{landscape}
+    \section{Anlagen}
+    \subsection{Schaltplan Sensorplatine - Projekt \glqq Kraftsensor\grqq} \label{subsec:Schaltplan_Kraftsensor}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=1.23\textwidth]{Schaltplan-2}
+        \label{fig:placeholder}
+    \end{figure}
+        
+\end{landscape}
+
+\subsection{Layout Sensorplatine - Projekt \glqq Kraftsensor\grqq} \label{subsec:Layout_Kraftsensor}
+
+\begin{figure}[H]
+\begin{minipage}[t]{0.5\textwidth}
+    \centering
+    \includegraphics[width=0.9\textwidth]{Top.pdf}
+    \subcaption{Top-Seite}
+\end{minipage}
+\begin{minipage}[t]{0.5\textwidth}
+    \centering
+    \includegraphics[width=0.89\textwidth]{Bot.pdf}
+    \subcaption{Bottom-Seite}
+\end{minipage}
+    \caption{Layout Sensorplatine aus dem Projekt \glqq Kraftsensor\grqq}
+    \label{fig:placeholder}
+\end{figure}
+
+\begin{landscape}
+    \subsection{Schaltplan Sensorplatine - Projekt \glqq Infrarot-Sensor\grqq} \label{subsec:Schaltplan_Infrarotsensor}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=1.23\textwidth]{Schaltplan_Infrarotsensor}
+        \label{fig:placeholder}
+    \end{figure}
+\end{landscape}
+
+\subsection{Layout Sensorplatine - Projekt \glqq Infrarot-Sensor\grqq} \label{subsec:Layout_Infrarotsensor}
+\begin{figure}[H]
+    \begin{minipage}[t]{0.5\textwidth}
+        \centering
+        \includegraphics[width=0.9\textwidth]{Top_infra.pdf}
+        \subcaption{Top-Seite}
+    \end{minipage}
+    \begin{minipage}[t]{0.5\textwidth}
+        \centering
+        \includegraphics[width=0.9\textwidth]{Bot_infrarot.pdf}
+        \subcaption{Bottom-Seite}
+    \end{minipage}
+        \caption{Layout Sensorplatine aus dem Projekt \glqq Infrarot-Sensor\grqq}
+        \label{fig:placeholder}
+    \end{figure}
+
+\newpage
+\printbibliography
+
+\end{spacing}
+\end{document}
+
+%------------------------------------------------------------------------------
+% Schaubild template
+%------------------------------------------------------------------------------
+\renewcommand{\figurename}{Abb.}
+\renewcommand{\tablename}{Tab.}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{placeholder.png}
+    \caption{placeholder}
+    \label{fig:placeholder}
+\end{figure}
